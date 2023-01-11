@@ -5,4 +5,3 @@ CREATE TABLE auto_user_posts
     created date,
     auto_user_id int references auto_users(id)
 );
-
