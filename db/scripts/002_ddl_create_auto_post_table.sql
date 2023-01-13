@@ -6,9 +6,9 @@ CREATE TABLE auto_post
     auto_user_id int references auto_users(id)
 );
 
-comment on table auto_post is 'Таблица объявлений автомобилей';
-comment on table auto_post.id is 'Идентификатор объявлений автомобилей';
-comment on table auto_post.description is 'описание объявления автомобиля';
-comment on table auto_post.created is 'дата создания объявления автомобиля';
-comment on table auto_post.auto_user_id is 'идентификатор пользователя автомобиля';
+comment on table auto_post is 'РўР°Р±Р»РёС†Р° РѕР±СЉСЏРІР»РµРЅРёР№ Р°РІС‚РѕРјРѕР±РёР»РµР№';
+comment on table auto_post.id is 'РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РѕР±СЉСЏРІР»РµРЅРёР№ Р°РІС‚РѕРјРѕР±РёР»РµР№';
+comment on table auto_post.description is 'РѕРїРёСЃР°РЅРёРµ РѕР±СЉСЏРІР»РµРЅРёСЏ Р°РІС‚РѕРјРѕР±РёР»СЏ';
+comment on table auto_post.created is 'РґР°С‚Р° СЃРѕР·РґР°РЅРёСЏ РѕР±СЉСЏРІР»РµРЅРёСЏ Р°РІС‚РѕРјРѕР±РёР»СЏ';
+comment on table auto_post.auto_user_id is 'РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Р°РІС‚РѕРјРѕР±РёР»СЏ';
 
