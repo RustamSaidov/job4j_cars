@@ -5,7 +5,8 @@ CREATE TABLE auto_user
     password varchar        not null
 );
 
-comment on table auto_user is 'Таблица автолюбителей';
-comment on table auto_post.id is 'Идентификатор автолюбителя';
-comment on table auto_post.login is 'Логин автолюбителя';
-comment on table auto_post.password is 'Пароль автолюбителя';
+
+--comment on table auto_user is 'Таблица автолюбителей';
+--comment on table auto_user.id is 'Идентификатор автолюбителя';
+--comment on table auto_user.login is 'Логин автолюбителя';
+--comment on table auto_user.password is 'Пароль автолюбителя';
