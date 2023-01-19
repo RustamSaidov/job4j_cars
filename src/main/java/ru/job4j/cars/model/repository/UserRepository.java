@@ -21,9 +21,13 @@ public class UserRepository {
      */
     public User create(User user) {
         Session session = sf.openSession();
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit();
+        try {
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
         session.close();
         return user;
     }
@@ -35,9 +39,17 @@ public class UserRepository {
      */
     public void update(User user) {
         Session session = sf.openSession();
-        session.beginTransaction();
-        session.update(user);
-        session.getTransaction().commit();
+        try {
+            session.beginTransaction();
+            session.createQuery(
+                            "UPDATE User SET login = :fLogin WHERE id = :fId")
+                    .setParameter("fLogin", "NEW LOGIN")
+                    .setParameter("fId", user.getId())
+                    .executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
         session.close();
     }
 
@@ -48,11 +60,16 @@ public class UserRepository {
      */
     public void delete(int userId) {
         Session session = sf.openSession();
-        session.beginTransaction();
-        User user = new User();
-        user.setId(userId);
-        session.delete(user);
-        session.getTransaction().commit();
+        try {
+            session.beginTransaction();
+            session.createQuery(
+                            "DELETE User WHERE id = :fId")
+                    .setParameter("fId", userId)
+                    .executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
         session.close();
     }
 
