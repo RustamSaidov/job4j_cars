@@ -43,7 +43,7 @@ public class UserRepository {
             session.beginTransaction();
             session.createQuery(
                             "UPDATE User SET login = :fLogin WHERE id = :fId")
-                    .setParameter("fLogin", "NEW LOGIN")
+                    .setParameter("fLogin", user.getLogin())
                     .setParameter("fId", user.getId())
                     .executeUpdate();
             session.getTransaction().commit();
