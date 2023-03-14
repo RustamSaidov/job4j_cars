@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode.Include;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,5 +25,5 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
-    private List<PriceHistory> priceHistories;
+    private List<PriceHistory> priceHistories = new ArrayList<>();
 }
