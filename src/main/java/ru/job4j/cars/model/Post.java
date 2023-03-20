@@ -19,6 +19,10 @@ public class Post {
     @Include
     private int id;
 
+    @OneToOne
+    @JoinColumn(name = "car_id", foreignKey = @ForeignKey(name = "CAR_ID_FK"))
+    private int carId;
+
     private String description;
 
     private LocalDateTime created = LocalDateTime.now();
@@ -34,4 +38,7 @@ public class Post {
             inverseJoinColumns = {@JoinColumn(name = "auto_user_id")}
     )
     private List<User> participates = new ArrayList<>();
+
+
+
 }
