@@ -21,7 +21,7 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "car_id", foreignKey = @ForeignKey(name = "CAR_ID_FK"))
-    private int carId;
+    private Car car;
 
     private String description;
 
