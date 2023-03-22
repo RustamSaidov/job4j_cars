@@ -15,6 +15,7 @@ public class CarRepository {
 
     /**
      * Сохранить в базе.
+     *
      * @param car машина.
      * @return машина с id.
      */
@@ -25,6 +26,7 @@ public class CarRepository {
 
     /**
      * Обновить в базе машину.
+     *
      * @param car машина.
      */
     public void update(Car car) {
@@ -33,6 +35,7 @@ public class CarRepository {
 
     /**
      * Удалить машину по id.
+     *
      * @param carId ID
      */
     public void delete(int carId) {
@@ -44,6 +47,7 @@ public class CarRepository {
 
     /**
      * Список машин отсортированных по id.
+     *
      * @return список машин.
      */
     public List<Car> findAllOrderById() {
@@ -52,6 +56,7 @@ public class CarRepository {
 
     /**
      * Найти машину по ID
+     *
      * @return машина.
      */
     public Optional<Car> findById(int carId) {

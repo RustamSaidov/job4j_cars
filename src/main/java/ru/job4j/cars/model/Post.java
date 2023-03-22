@@ -39,6 +39,7 @@ public class Post {
     )
     private List<User> participates = new ArrayList<>();
 
-
-
+    @OneToOne
+    @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "PHOTO_ID_FK"))
+    private int photoId;
 }
