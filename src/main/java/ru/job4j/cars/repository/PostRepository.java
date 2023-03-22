@@ -11,6 +11,9 @@ import java.util.Map;
 @AllArgsConstructor
 public class PostRepository {
     private final CrudRepository crudRepository;
+    private static final String FIND_BY_LAST_DAY_OF_CREATION = "FROM Post WHERE DATE(created) = DATE(NOW()) order by id asc";
+    private static final String FIND_WITH_PHOTO = "FROM Post WHERE photo_id IS NOT NULL order by id asc";
+    private static final String FIND_BY_MARK = "FROM POST p JOIN CAR c ON p.car_id = c.id WHERE c.name = 'cMark'";
 
 
     /**
@@ -19,7 +22,7 @@ public class PostRepository {
      * @return список постов за последний день.
      */
     public List<Post> findAllPostsCreatedTodayOrderById() {
-        return crudRepository.query("FROM Post WHERE DATE(created) = DATE(NOW()) order by id asc", Post.class);
+        return crudRepository.query(FIND_BY_LAST_DAY_OF_CREATION, Post.class);
     }
 
 
@@ -29,7 +32,7 @@ public class PostRepository {
      * @return список постов с фото.
      */
     public List<Post> findAllPostsWithPhotoOrderById() {
-        return crudRepository.query("FROM Post WHERE photo_id IS NOT NULL order by id asc", Post.class);
+        return crudRepository.query(FIND_WITH_PHOTO, Post.class);
     }
 
     /**
@@ -39,6 +42,6 @@ public class PostRepository {
      * @return постов с машиной определенной марки.
      */
     public List<Post> findAllPostsByMarkOrderById(String cMark) {
-        return crudRepository.query("FROM POST p JOIN CAR c ON p.car_id = c.id WHERE c.name = 'cMark'", Post.class, Map.of("cMark", cMark));
+        return crudRepository.query(FIND_BY_MARK, Post.class, Map.of("cMark", cMark));
     }
 }
