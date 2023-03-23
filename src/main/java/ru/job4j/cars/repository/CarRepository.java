@@ -1,6 +1,7 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Car;
 
@@ -10,7 +11,9 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class CarRepository {
+public class CarRepository
+//        implements AutoCloseable
+{
     private final CrudRepository crudRepository;
 
     /**
@@ -65,4 +68,9 @@ public class CarRepository {
                 Map.of("fId", carId)
         );
     }
+
+//    @Override
+//    public void close() {
+//        StandardServiceRegistryBuilder.destroy(registry);
+//    }
 }
