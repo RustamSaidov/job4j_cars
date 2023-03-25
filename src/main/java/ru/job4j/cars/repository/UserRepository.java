@@ -55,6 +55,7 @@ public class UserRepository {
     /**
      * Найти пользователя по ID
      *
+     * @param userId ID пользователя.
      * @return пользователь.
      */
     public Optional<User> findById(int userId) {

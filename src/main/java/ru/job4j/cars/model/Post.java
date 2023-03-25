@@ -41,5 +41,6 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "PHOTO_ID_FK"))
-    private int photoId;
+//    private int photoId;
+    private Photo photo;
 }

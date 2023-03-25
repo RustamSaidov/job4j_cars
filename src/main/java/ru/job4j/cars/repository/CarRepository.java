@@ -54,7 +54,7 @@ public class CarRepository
      * @return список машин.
      */
     public List<Car> findAllOrderById() {
-        return crudRepository.query("from Car order by id asc", Car.class);
+        return crudRepository.query("from Car JOIN FETCH driver order by id asc", Car.class);
     }
 
     /**
@@ -63,10 +63,19 @@ public class CarRepository
      * @return машина.
      */
     public Optional<Car> findById(int carId) {
-        return crudRepository.optional(
-                "from Car where id = :fId", Car.class,
+//        return crudRepository.optional(
+//                "from Car JOIN FETCH driver where id = :fId", Car.class,
+//                Map.of("fId", carId)
+//        );
+        System.out.println("-----------------------------------------------------");
+        var result =  crudRepository.optional(
+                "from Car JOIN FETCH driver where id = :fId", Car.class,
                 Map.of("fId", carId)
         );
+        System.out.println("-----------------------------------------------------");
+        System.out.println("RESULT FROM CR METHOD: "+ result);
+        System.out.println("-----------------------------------------------------");
+        return result;
     }
 
 //    @Override

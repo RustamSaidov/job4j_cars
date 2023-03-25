@@ -3,19 +3,15 @@ package ru.job4j.cars.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "driver")
+@Table(name = "photo")
 @Data
-public class Driver {
+public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-
-    @OneToOne
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
-//    private int userId;
-    private User user;
-
+    private String path;
 }
