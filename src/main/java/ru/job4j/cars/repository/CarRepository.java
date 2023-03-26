@@ -53,8 +53,9 @@ public class CarRepository
      *
      * @return список машин.
      */
-    public List<Car> findAllOrderById() {
-        return crudRepository.query("from Car JOIN FETCH driver order by id asc", Car.class);
+    public List<Car> findAll() {
+        return crudRepository.query("from Car c " +
+                "JOIN FETCH c.drivers", Car.class);
     }
 
     /**
@@ -63,23 +64,20 @@ public class CarRepository
      * @return машина.
      */
     public Optional<Car> findById(int carId) {
-//        return crudRepository.optional(
+        return crudRepository.optional(
+                "from Car c " +
+                        "JOIN FETCH c.drivers " +
+                        "where c.id = :fId", Car.class,
+                Map.of("fId", carId)
+        );
+//        System.out.println("-----------------------------------------------------");
+//        var result =  crudRepository.optional(
 //                "from Car JOIN FETCH driver where id = :fId", Car.class,
 //                Map.of("fId", carId)
 //        );
-        System.out.println("-----------------------------------------------------");
-        var result =  crudRepository.optional(
-                "from Car JOIN FETCH driver where id = :fId", Car.class,
-                Map.of("fId", carId)
-        );
-        System.out.println("-----------------------------------------------------");
-        System.out.println("RESULT FROM CR METHOD: "+ result);
-        System.out.println("-----------------------------------------------------");
-        return result;
+//        System.out.println("-----------------------------------------------------");
+//        System.out.println("RESULT FROM CR METHOD: "+ result);
+//        System.out.println("-----------------------------------------------------");
+//        return result;
     }
-
-//    @Override
-//    public void close() {
-//        StandardServiceRegistryBuilder.destroy(registry);
-//    }
 }

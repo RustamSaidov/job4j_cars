@@ -80,7 +80,13 @@ class PostRepositoryTest {
         List<Post> list = new ArrayList<>();
         list.add(post1);
         list.add(post2);
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        List<Post> result1 = postRepository.findAllOrderById();
+//        result1.stream().forEach(System.out::println);
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         List<Post> result = postRepository.findAllPostsCreatedTodayOrderById();
+        System.out.println("*******************************");
+                result.stream().forEach(System.out::println);
         assertThat(result, is(list));
     }
 
@@ -100,5 +106,4 @@ class PostRepositoryTest {
         List<Post> result = postRepository.findAllPostsWithPhotoOrderById();
         assertThat(result, is(list));
     }
-
 }

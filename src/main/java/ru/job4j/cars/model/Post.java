@@ -27,7 +27,9 @@ public class Post {
 
     private LocalDateTime created = LocalDateTime.now();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> priceHistories = new ArrayList<>();
 
@@ -41,6 +43,5 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "photo_id", foreignKey = @ForeignKey(name = "PHOTO_ID_FK"))
-//    private int photoId;
     private Photo photo;
 }

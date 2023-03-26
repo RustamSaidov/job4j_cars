@@ -37,36 +37,48 @@ class CarRepositoryTest {
 
     @Test
     public void whenAddNewCarThenGetSameCarFromDB() throws Exception {
-
         User user = new User();
         userRepository.create(user);
         Engine engine = new Engine();
-        System.out.println("ENGINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+engine);
         engineRepository.create(engine);
-        System.out.println("ENGINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+engine);
         Driver driver = new Driver();
         driver.setUser(user);
-        System.out.println("DRIVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+driver);
         driverRepository.create(driver);
-        System.out.println("DRIVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+driver);
         Car car = new Car();
         car.setName("car1");
         car.setDriver(driver);
         car.setEngine(engine);
         carRepository.create(car);
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        System.out.println(car);
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        var result1 = carRepository.findAll();
+        result1.stream().forEach(r-> System.out.println("RESULTRESULTRESULTRESULTRESULTRESULTRESULTRESULTRESULT: "+result1));
         Car result = carRepository.findById(car.getId()).get();
         assertThat(result.getName(), is(car.getName()));
     }
 
     @Test
     public void whenAddNewCarThenUpdateCarInDB() throws Exception {
+        User user = new User();
+        userRepository.create(user);
+        Engine engine = new Engine();
+        engineRepository.create(engine);
+        Driver driver = new Driver();
+        driver.setUser(user);
+        driverRepository.create(driver);
         Car car1 = new Car();
         car1.setName("car1");
+        car1.setDriver(driver);
+        car1.setEngine(engine);
         carRepository.create(car1);
         Car car2 = new Car();
         car2.setId(car1.getId());
         car2.setName("car2");
+        car2.setDriver(driver);
+        car2.setEngine(engine);
         carRepository.update(car2);
+        System.out.println("UPDATED CAR: "+car2);
         Car result = carRepository.findById(car1.getId()).get();
         assertThat(result, is(car2));
     }
@@ -80,8 +92,10 @@ class CarRepositoryTest {
         carRepository.create(car1);
         carRepository.create(car2);
         carRepository.delete(car1.getId());
-        Optional<Car> result = carRepository.findById(car1.getId());
-        assertTrue(result.isEmpty());
+        List<Car> list = new ArrayList<>();
+        list.add(car2);
+        List<Car> result = carRepository.findAll();
+        assertThat(result, is(list));
     }
 
     @Test
@@ -95,7 +109,7 @@ class CarRepositoryTest {
         List<Car> list = new ArrayList<>();
         list.add(car1);
         list.add(car2);
-        List<Car> result = carRepository.findAllOrderById();
+        List<Car> result = carRepository.findAll();
         assertThat(result, is(list));
     }
 

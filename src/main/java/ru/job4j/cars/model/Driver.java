@@ -15,7 +15,5 @@ public class Driver {
 
     @OneToOne
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
-//    private int userId;
     private User user;
-
 }
