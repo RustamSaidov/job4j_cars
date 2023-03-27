@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,7 @@ class PostRepositoryTest {
         post1.setDescription("description1");
         Post post2 = new Post();
         post2.setDescription("description2");
+        post1.setCreated(LocalDateTime.now());
         postRepository.create(post1);
         postRepository.create(post2);
         List<Post> list = new ArrayList<>();

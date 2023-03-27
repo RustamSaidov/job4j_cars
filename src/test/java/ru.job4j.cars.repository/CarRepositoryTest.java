@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @AllArgsConstructor
-class CarRepositoryTest {
+class CarRepositoryTest implements AutoCloseable{
 
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
@@ -95,8 +95,18 @@ class CarRepositoryTest {
 
     @Test
     public void whenAddSeveralCarsThenFindAllFromDB() throws Exception {
+        User user = new User();
+        userRepository.create(user);
+        Engine engine = new Engine();
+        engineRepository.create(engine);
+        Driver driver = new Driver();
+        driver.setUser(user);
+        driverRepository.create(driver);
         Car car1 = new Car();
         car1.setName("car1");
+        car1.setDriver(driver);
+        car1.setEngine(engine);
+        carRepository.create(car1);
         Car car2 = new Car();
         car2.setName("car2");
         carRepository.create(car1);
@@ -105,6 +115,14 @@ class CarRepositoryTest {
         list.add(car1);
         list.add(car2);
         List<Car> result = carRepository.findAll();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        result.stream().forEach(c-> System.out.println("CAR: "+c));
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         assertThat(result, is(list));
+    }
+
+    @Override
+    public void close() {
+        StandardServiceRegistryBuilder.destroy(registry);
     }
 }
