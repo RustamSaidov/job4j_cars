@@ -1,7 +1,6 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Car;
 
@@ -11,9 +10,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class CarRepository
-//        implements AutoCloseable
-{
+public class CarRepository {
     private final CrudRepository crudRepository;
 
     /**
@@ -70,14 +67,5 @@ public class CarRepository
                         "where c.id = :fId", Car.class,
                 Map.of("fId", carId)
         );
-//        System.out.println("-----------------------------------------------------");
-//        var result =  crudRepository.optional(
-//                "from Car JOIN FETCH driver where id = :fId", Car.class,
-//                Map.of("fId", carId)
-//        );
-//        System.out.println("-----------------------------------------------------");
-//        System.out.println("RESULT FROM CR METHOD: "+ result);
-//        System.out.println("-----------------------------------------------------");
-//        return result;
     }
 }

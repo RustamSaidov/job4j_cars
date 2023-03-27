@@ -14,11 +14,9 @@ import ru.job4j.cars.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @AllArgsConstructor
 class CarRepositoryTest {
@@ -33,7 +31,7 @@ class CarRepositoryTest {
     private final CarRepository carRepository = new CarRepository(crudRepository);
     private final DriverRepository driverRepository = new DriverRepository(crudRepository);
     private final EngineRepository engineRepository = new EngineRepository(crudRepository);
-    private final  UserRepository userRepository = new UserRepository(crudRepository);
+    private final UserRepository userRepository = new UserRepository(crudRepository);
 
     @Test
     public void whenAddNewCarThenGetSameCarFromDB() throws Exception {
@@ -49,11 +47,8 @@ class CarRepositoryTest {
         car.setDriver(driver);
         car.setEngine(engine);
         carRepository.create(car);
-//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        System.out.println(car);
-//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         var result1 = carRepository.findAll();
-        result1.stream().forEach(r-> System.out.println("RESULTRESULTRESULTRESULTRESULTRESULTRESULTRESULTRESULT: "+result1));
+        result1.stream().forEach(r -> System.out.println("RESULTRESULTRESULTRESULTRESULTRESULTRESULTRESULTRESULT: " + result1));
         Car result = carRepository.findById(car.getId()).get();
         assertThat(result.getName(), is(car.getName()));
     }
@@ -78,7 +73,7 @@ class CarRepositoryTest {
         car2.setDriver(driver);
         car2.setEngine(engine);
         carRepository.update(car2);
-        System.out.println("UPDATED CAR: "+car2);
+        System.out.println("UPDATED CAR: " + car2);
         Car result = carRepository.findById(car1.getId()).get();
         assertThat(result, is(car2));
     }
@@ -112,7 +107,4 @@ class CarRepositoryTest {
         List<Car> result = carRepository.findAll();
         assertThat(result, is(list));
     }
-
-
 }
-

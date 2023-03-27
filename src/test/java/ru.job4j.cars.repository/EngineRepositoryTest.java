@@ -5,8 +5,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.Test;
-import ru.job4j.cars.model.Car;
-import ru.job4j.cars.model.Driver;
 import ru.job4j.cars.model.Engine;
 
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 
 class EngineRepositoryTest {
 
@@ -78,5 +75,4 @@ class EngineRepositoryTest {
         List<Engine> result = engineRepository.findAllOrderById();
         assertThat(result, is(list));
     }
-
 }

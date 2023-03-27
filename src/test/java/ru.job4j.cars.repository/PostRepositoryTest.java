@@ -5,17 +5,14 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.Test;
-import ru.job4j.cars.model.Engine;
 import ru.job4j.cars.model.Photo;
 import ru.job4j.cars.model.Post;
-import ru.job4j.cars.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PostRepositoryTest {
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -26,7 +23,7 @@ class PostRepositoryTest {
     private final CrudRepository crudRepository = new CrudRepository(sf);
 
     private final PostRepository postRepository = new PostRepository(crudRepository);
-    private final PhotoRepository photoRepository =  new PhotoRepository(crudRepository);
+    private final PhotoRepository photoRepository = new PhotoRepository(crudRepository);
 
 
     @Test
@@ -67,8 +64,6 @@ class PostRepositoryTest {
     }
 
 
-
-
     @Test
     public void whenAddSeveralPostsThenFindAllFromDBCreatedToday() throws Exception {
         Post post1 = new Post();
@@ -80,13 +75,9 @@ class PostRepositoryTest {
         List<Post> list = new ArrayList<>();
         list.add(post1);
         list.add(post2);
-//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        List<Post> result1 = postRepository.findAllOrderById();
-//        result1.stream().forEach(System.out::println);
-//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         List<Post> result = postRepository.findAllPostsCreatedTodayOrderById();
         System.out.println("*******************************");
-                result.stream().forEach(System.out::println);
+        result.stream().forEach(System.out::println);
         assertThat(result, is(list));
     }
 

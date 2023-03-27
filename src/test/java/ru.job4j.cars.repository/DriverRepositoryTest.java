@@ -6,16 +6,12 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.Driver;
-import ru.job4j.cars.model.User;
-
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 
 class DriverRepositoryTest {
 
@@ -79,7 +75,4 @@ class DriverRepositoryTest {
         List<Driver> result = driverRepository.findAllOrderById();
         assertThat(result, is(list));
     }
-
-
-
 }
